@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 
 const SKILLS_DIR = "docs/pages/build-with-ai";
+const RAW_SKILLS_DIR = "docs/public/skills";
 const RAW_BASE =
   "https://raw.githubusercontent.com/scaffold-eth/scaffold-eth-2/main/.agents/skills";
 const GITHUB_API =
@@ -42,6 +43,11 @@ async function fetchAndWriteSkill(name: string): Promise<Skill | null> {
     path.join(SKILLS_DIR, `${name}.md`),
     `---\ntitle: "${name}"\ndescription: "${shortDesc}"\n---\n\n\`\`\`yaml\n---\n${originalFrontmatter}\n---\n\`\`\`\n\n${body}`,
   );
+
+  // Raw, untouched SKILL.md for agent discovery index (/.well-known/agent-skills)
+  const rawDir = path.join(RAW_SKILLS_DIR, name);
+  fs.mkdirSync(rawDir, { recursive: true });
+  fs.writeFileSync(path.join(rawDir, "SKILL.md"), raw);
 
   return { name, title: name, shortDesc };
 }
@@ -101,6 +107,14 @@ function readExistingSkills(): Skill[] | null {
     );
 
   if (files.length === 0) return null;
+
+  // Require the raw SKILL.md mirrors to exist too — they feed the agent-skills
+  // discovery index. If any are missing, bust the cache and re-fetch.
+  const allRawPresent = files.every((f) => {
+    const name = f.replace(".md", "");
+    return fs.existsSync(path.join(RAW_SKILLS_DIR, name, "SKILL.md"));
+  });
+  if (!allRawPresent) return null;
 
   return files.map((f) => {
     const name = f.replace(".md", "");

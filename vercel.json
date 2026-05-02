@@ -1,4 +1,15 @@
 {
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Link",
+          "value": "</llms.txt>; rel=\"alternate\"; type=\"text/plain\"; title=\"LLM-friendly documentation index\", </llms-full.txt>; rel=\"alternate\"; type=\"text/plain\"; title=\"LLM-friendly full documentation\", </sitemap.xml>; rel=\"sitemap\"; type=\"application/xml\", </SKILL.md>; rel=\"alternate\"; type=\"text/markdown\"; title=\"Scaffold-ETH 2 agent skill\""
+        }
+      ]
+    }
+  ],
   "redirects": [
     {
       "source": "/quick-start",

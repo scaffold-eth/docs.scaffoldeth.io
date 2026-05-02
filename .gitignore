@@ -4,3 +4,13 @@ docs/dist
 # Generated at build time by fetching from GitHub API (see vocs.config.ts)
 docs/pages/build-with-ai/*.md
 !docs/pages/build-with-ai/agents-md.md
+
+# Generated at build time by scripts/gen-sitemap.ts (see vocs.config.ts)
+docs/public/sitemap.xml
+
+# Generated at build time by scripts/fetch-skills.ts (raw skill mirrors
+# consumed by the agent-skills discovery index)
+docs/public/skills/
+
+# Generated at build time by scripts/gen-agent-skills-index.ts
+docs/public/.well-known/
