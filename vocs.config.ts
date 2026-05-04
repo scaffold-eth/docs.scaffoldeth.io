@@ -1,4 +1,5 @@
 import { defineConfig } from "vocs";
+import { createElement } from "react";
 import { fetchSkills } from "./scripts/fetch-skills";
 import { generateAgentSkillsIndex } from "./scripts/gen-agent-skills-index";
 import { generateSitemap } from "./scripts/gen-sitemap";
@@ -22,6 +23,13 @@ export default defineConfig({
   logoUrl: "/img/logo.svg",
   iconUrl: "/img/favicon.png",
   baseUrl,
+  head: () =>
+    createElement("script", {
+      async: true,
+      defer: true,
+      "data-domain": "docs.scaffoldeth.io",
+      src: "https://plausible.io/js/plausible.js",
+    }),
   ogImageUrl: {
     "/": "https://vocs.dev/api/og?logo=%logo&title=%title&description=%description",
   },
