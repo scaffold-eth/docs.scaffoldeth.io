@@ -37,10 +37,12 @@ If you choose Foundry as solidity framework in the CLI, you'll also need Foundry
 Checkout: [getfoundry.sh](https://getfoundry.sh/)
 :::
 
-If you want to use extensions, you can add the -e flag followed by the extension name:
+:::warning[Extensions are deprecated]
+Extensions are deprecated and no longer actively maintained. To add features to your project, use [Skills](/build-with-ai) instead — they work anytime during development, not just at project creation. The `-e` flag still works for existing extensions; see the [Extensions section](/extensions) for the legacy docs.
+:::
+
+To install an existing extension at creation time, add the `-e` flag followed by the extension name:
 
 ```bash [Terminal]
 npx create-eth@latest -e extension-name
 ```
-
-For more information about available extensions and how to use them, check out the [Extensions section](/extensions)

@@ -5,6 +5,10 @@ description: Add extensions to your Scaffold-ETH 2 project.
 
 # How to Install Extensions
 
+:::warning[Deprecated]
+Extensions are deprecated and no longer actively maintained. To add features to your project, use [Skills](/build-with-ai) instead — they're more flexible and work anytime during development, not just at project creation.
+:::
+
 This guide explains what are extensions and how to use them in your Scaffold-ETH 2 project.
 
 ## What are Extensions?

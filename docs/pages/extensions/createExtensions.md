@@ -5,6 +5,10 @@ description: Build custom extensions for Scaffold-ETH 2.
 
 # Creating Your Own Extension
 
+:::warning[Deprecated]
+Extensions are deprecated and no longer actively maintained. To add features to your project, use [Skills](/build-with-ai) instead — they're more flexible and work anytime during development, not just at project creation.
+:::
+
 This section will help you develop custom extensions for Scaffold-ETH 2, from simple additions to more complex modifications.
 
 > Video Guide: For a visual walkthrough of the extension development process, check out our [YouTube tutorial](https://youtu.be/XQCv533XGZk?si=dlJH4zd4b99_6soW).
