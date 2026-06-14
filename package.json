@@ -7,6 +7,7 @@
     "dev": "vocs dev",
     "build": "vocs build",
     "preview": "vocs preview",
+    "check:ai-surface": "node scripts/check-ai-surface.js",
     "format": "prettier --write ."
   },
   "dependencies": {
