@@ -7,6 +7,10 @@ description: Retrieve historical event logs from smart contracts.
 
 Use this hook to retrieve historical event logs for your smart contract, providing past activity data, with the option to watch for new events.
 
+:::caution Production Usage
+This hook is primarily intended for **local development environments** (hardhat/anvil chains). In production, (mainnet or L2 chains with short block times), it can cause performance issues and excessive RPC usage due to its use of the `getLogs` method. For production applications, consider using dedicated indexing solutions like [The Graph](https://thegraph.com/) or [Ponder](https://ponder.sh/) for efficient event querying.
+:::caution
+
 ```ts
 const {
   data: events,
