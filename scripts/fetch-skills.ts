@@ -83,9 +83,9 @@ The orchestrator skill is hosted at [\`docs.scaffoldeth.io/SKILL.md\`](https://d
 
 ## Skills vs Extensions
 
-[\`Extensions\`](/extensions) and skills solve different problems. Extensions run at project creation time (\`npx create-eth@latest\`) and add boilerplate files to your project. Skills work anytime during development. Your AI agent reads the skill instructions and adapts the implementation to your existing code, instead of dumping a fixed template.
+[\`Extensions\`](/extensions) are deprecated in favor of skills. Extensions ran at project creation time (\`npx create-eth@latest\`) and added a fixed set of boilerplate files to your project. Skills work anytime during development: your AI agent reads the skill instructions and adapts the implementation to your existing code, instead of dumping a fixed template.
 
-The plan is to eventually migrate all extensions to skills. Skills are more flexible since the agent can adapt to your existing codebase, and they don't require changes to the CLI scaffolding pipeline.
+Skills are the recommended replacement — they're more flexible since the agent can adapt to your existing codebase, and they don't require changes to the CLI scaffolding pipeline.
 
 ## Creating your own Skills
 
