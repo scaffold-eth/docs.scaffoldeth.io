@@ -1,4 +1,5 @@
 import { defineConfig } from "vocs";
+import { createElement, Fragment } from "react";
 import { fetchSkills } from "./scripts/fetch-skills";
 import { generateAgentSkillsIndex } from "./scripts/gen-agent-skills-index";
 import { generateSitemap } from "./scripts/gen-sitemap";
@@ -22,6 +23,21 @@ export default defineConfig({
   logoUrl: "/img/logo.svg",
   iconUrl: "/img/favicon.png",
   baseUrl,
+  head: () =>
+    createElement(
+      Fragment,
+      null,
+      createElement("script", {
+        defer: true,
+        src: "https://plausible.io/js/pa-d22-c9SXWUaRHTRe7b4Uu.js",
+      }),
+      createElement("script", {
+        dangerouslySetInnerHTML: {
+          __html:
+            "window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()",
+        },
+      }),
+    ),
   ogImageUrl: {
     "/": "https://vocs.dev/api/og?logo=%logo&title=%title&description=%description",
   },
