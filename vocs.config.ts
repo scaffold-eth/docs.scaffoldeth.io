@@ -1,4 +1,4 @@
-import { defineConfig, McpSource } from "vocs/config";
+import { defineConfig } from "vocs/config";
 import fs from "node:fs";
 
 // Skill sidebar entries come from a manifest written by scripts/generate.ts
@@ -39,16 +39,11 @@ export default defineConfig({
     langAlias: { env: "bash" },
     fallbackLanguage: "text",
   },
-  // Native v2 MCP server at /api/mcp — exposes the docs + SE-2 source to AI clients.
-  mcp: {
-    enabled: true,
-    sources: [
-      McpSource.github({
-        name: "scaffold-eth-2",
-        repo: "scaffold-eth/scaffold-eth-2",
-      }),
-    ],
-  },
+  // Native v2 MCP server at /api/mcp — lets AI clients read and search the docs.
+  // Docs-only by design: we don't expose scaffold-eth/scaffold-eth-2 as a source.
+  // Anyone using SE-2 already has their own project locally (possibly Foundry,
+  // possibly customized) — the agent should read that, not the Hardhat template.
+  mcp: { enabled: true },
   editLink: {
     link: "https://github.com/scaffold-eth/docs.scaffoldeth.io/edit/main/src/pages/:path",
   },
