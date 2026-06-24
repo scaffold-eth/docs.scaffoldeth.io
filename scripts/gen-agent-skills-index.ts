@@ -3,9 +3,9 @@ import fs from "node:fs";
 import path from "node:path";
 
 const SCHEMA_URL = "https://schemas.agentskills.io/discovery/0.2.0/schema.json";
-const ROOT_SKILL = "docs/public/SKILL.md";
-const SKILLS_DIR = "docs/public/skills";
-const OUTPUT = "docs/public/.well-known/agent-skills/index.json";
+const ROOT_SKILL = "public/SKILL.md";
+const SKILLS_DIR = "public/skills";
+const OUTPUT = "public/.well-known/agent-skills/index.json";
 const PRODUCTION_URL = "https://docs.scaffoldeth.io";
 
 type SkillType = "skill-md" | "archive";

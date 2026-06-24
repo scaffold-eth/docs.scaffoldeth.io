@@ -9,37 +9,5 @@
         }
       ]
     }
-  ],
-  "redirects": [
-    {
-      "source": "/quick-start",
-      "destination": "/quick-start/installation",
-      "permanent": true
-    },
-    {
-      "source": "/quick-start/",
-      "destination": "/quick-start/installation",
-      "permanent": true
-    },
-    {
-      "source": "/recipes",
-      "destination": "/recipes/GetCurrentBalanceFromAccount",
-      "permanent": true
-    },
-    {
-      "source": "/recipes/",
-      "destination": "/recipes/GetCurrentBalanceFromAccount",
-      "permanent": true
-    },
-    {
-      "source": "/deploying",
-      "destination": "/deploying/deploy-smart-contracts",
-      "permanent": true
-    },
-    {
-      "source": "/deploying/",
-      "destination": "/deploying/deploy-smart-contracts",
-      "permanent": true
-    }
   ]
 }

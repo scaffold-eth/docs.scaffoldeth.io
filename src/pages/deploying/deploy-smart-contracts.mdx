@@ -3,7 +3,7 @@ title: Deploy Smart Contracts
 description: Deploy and verify smart contracts to live networks.
 ---
 
-import { Tabs, TabItem } from "../../components/Tabs";
+import { Tab, Tabs } from "vocs";
 
 # Deploy Your Smart Contracts
 
@@ -13,9 +13,9 @@ To deploy your smart contracts to a live network, there are a few things you nee
 
 Scaffold-ETH 2 comes with a selection of predefined networks. To add your custom network:
 
-<Tabs groupId="dev-tool">
+<Tabs stateKey="dev-tool">
 
-    <TabItem value="hardhat" label="Hardhat" default>
+    <Tab title="Hardhat">
 
         Go to `packages/hardhat/hardhat.config.ts` and add your network to the `networks` object.
 
@@ -29,8 +29,8 @@ Scaffold-ETH 2 comes with a selection of predefined networks. To add your custom
         }
         ```
 
-    </TabItem>
-    <TabItem value="foundry" label="Foundry">
+    </Tab>
+    <Tab title="Foundry">
 
         Go to `packages/foundry/foundry.toml` and add your network to the `rpc_endpoints` object.
 
@@ -40,7 +40,7 @@ Scaffold-ETH 2 comes with a selection of predefined networks. To add your custom
         base = "https://mainnet.base.org"
         ```
 
-    </TabItem>
+    </Tab>
 
 </Tabs>
 
@@ -52,9 +52,9 @@ You can also add your custom network by following the recipe [here](/recipes/add
 
 The deployer account is the account that will deploy your contracts. Additionally, the deployer account will be used to execute any function calls that are part of your deployment script.
 
-<Tabs groupId="dev-tool">
+<Tabs stateKey="dev-tool">
 
-    <TabItem value="hardhat" label="Hardhat" default>
+    <Tab title="Hardhat">
 
         You can **generate a random account / private key** by running:
 
@@ -105,8 +105,8 @@ The deployer account is the account that will deploy your contracts. Additionall
 
     </details>
 
-    </TabItem>
-    <TabItem value="foundry" label="Foundry">
+    </Tab>
+    <Tab title="Foundry">
 
         :::note
         If you already have a foundry keystore account, you can skip the following steps.
@@ -157,14 +157,14 @@ The deployer account is the account that will deploy your contracts. Additionall
 
         </details>
 
-    </TabItem>
+    </Tab>
 
 </Tabs>
 
 ## 3. Deploy your smart contract(s)
 
-<Tabs groupId="dev-tool">
-    <TabItem value="hardhat" label="Hardhat" default>
+<Tabs stateKey="dev-tool">
+    <Tab title="Hardhat">
 
         By default `yarn deploy` will deploy all the contracts from your `packages/hardhat/contracts` folder to the local network. You can change `defaultNetwork` in `packages/hardhat/hardhat.config.ts` file.
 
@@ -176,9 +176,9 @@ The deployer account is the account that will deploy your contracts. Additionall
 
         eg: `yarn deploy --network sepolia`
 
-    </TabItem>
+    </Tab>
 
-    <TabItem value="foundry" label="Foundry">
+    <Tab title="Foundry">
 
         By default, `yarn deploy` runs `Deploy.s.sol`, deploying to the local network using Anvil's 9th account (configured via `LOCALHOST_KEYSTORE_ACCOUNT` in `packages/foundry/.env`).
 
@@ -204,15 +204,15 @@ The deployer account is the account that will deploy your contracts. Additionall
 
         The keystore must exist in `~/.foundry/keystores/`.
 
-    </TabItem>
+    </Tab>
 
 </Tabs>
 
 #### Deploy Specific Contracts
 
-<Tabs groupId="dev-tool">
+<Tabs stateKey="dev-tool">
 
-    <TabItem value="hardhat" label="Hardhat" default>
+    <Tab title="Hardhat">
 
         To deploy specific contracts, add tags to the deploy scripts in `packages/hardhat/deploy`. For example, in `01_deploy_my_contract.ts`:
 
@@ -226,8 +226,8 @@ The deployer account is the account that will deploy your contracts. Additionall
         yarn deploy --tags tagExample
         ```
 
-    </TabItem>
-    <TabItem value="foundry" label="Foundry">
+    </Tab>
+    <Tab title="Foundry">
 
         For individual contracts, create a separate deployment script in `packages/foundry/script`, e.g., `DeployMyContract.s.sol`. Run the script with:
 
@@ -237,7 +237,7 @@ The deployer account is the account that will deploy your contracts. Additionall
 
         If `--file` parameter is not specified, `Deploy.s.sol` file is used.
 
-    </TabItem>
+    </Tab>
 
 </Tabs>
 
@@ -253,9 +253,9 @@ eg: `yarn verify --network sepolia`
 
 This command **works in both Hardhat and Foundry**, verifying all the deployed contracts. However, the verification method differs depending on the Solidity framework you're using...
 
-<Tabs groupId="dev-tool">
+<Tabs stateKey="dev-tool">
 
-    <TabItem value="hardhat" label="Hardhat" default>
+    <Tab title="Hardhat">
 
         Hardhat uses [etherscan-verify from hardhat-deploy](https://www.npmjs.com/package/hardhat-deploy#4-hardhat-etherscan-verify).
 
@@ -267,13 +267,13 @@ This command **works in both Hardhat and Foundry**, verifying all the deployed c
 
         If the chain you're using is not supported by any of the verifying methods, you can add new supported chains to your chosen method, either [etherscan-verify](https://www.npmjs.com/package/hardhat-deploy#options-2) or [hardhat-verify](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-verify#adding-support-for-other-networks).
 
-    </TabItem>
+    </Tab>
 
-    <TabItem value="foundry" label="Foundry">
+    <Tab title="Foundry">
 
         Foundry uses `VerifyAll.s.sol` script located in `packages/foundry/script`.
 
-    </TabItem>
+    </Tab>
 
 </Tabs>
 
@@ -283,21 +283,21 @@ By default, Scaffold-ETH 2 provides predefined API keys for popular services suc
 
 For production-grade applications, it's recommended to obtain your own API keys (to prevent rate limiting issues). You can configure these at:
 
-<Tabs groupId="dev-tool">
+<Tabs stateKey="dev-tool">
 
-    <TabItem value="hardhat" label="Hardhat" default>
+    <Tab title="Hardhat">
 
     - `ALCHEMY_API_KEY` variable in `packages/hardhat/.env` and `packages/nextjs/.env.local`. You can create API keys from the [Alchemy dashboard](https://dashboard.alchemy.com/).
     - `ETHERSCAN_API_KEY` variable in `packages/hardhat/.env` using your generated API key. You can get your key [here](https://etherscan.io/myapikey).
 
-    </TabItem>
+    </Tab>
 
-    <TabItem value="foundry" label="Foundry">
+    <Tab title="Foundry">
 
     - `ALCHEMY_API_KEY` variable in `packages/nextjs/.env.local`. You can create API keys from the [Alchemy dashboard](https://dashboard.alchemy.com/).
     - `ETHERSCAN_API_KEY` variable in `packages/foundry/.env` using your generated API key. You can get your key [here](https://etherscan.io/myapikey).
 
-    </TabItem>
+    </Tab>
 
 </Tabs>
 

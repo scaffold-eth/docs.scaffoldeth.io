@@ -1,8 +1,8 @@
 import fs from "node:fs";
 import path from "node:path";
 
-const SKILLS_DIR = "docs/pages/build-with-ai";
-const RAW_SKILLS_DIR = "docs/public/skills";
+const SKILLS_DIR = "src/pages/build-with-ai";
+const RAW_SKILLS_DIR = "public/skills";
 const RAW_BASE =
   "https://raw.githubusercontent.com/scaffold-eth/scaffold-eth-2/main/.agents/skills";
 const GITHUB_API =

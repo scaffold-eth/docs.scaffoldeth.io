@@ -1,21 +1,31 @@
-import { defineConfig } from "vocs";
-import { createElement, Fragment } from "react";
-import { fetchSkills } from "./scripts/fetch-skills";
-import { generateAgentSkillsIndex } from "./scripts/gen-agent-skills-index";
-import { generateSitemap } from "./scripts/gen-sitemap";
+import { defineConfig } from "vocs/config";
+import fs from "node:fs";
 
-const skills = await fetchSkills();
-generateSitemap();
-generateAgentSkillsIndex();
-
+// Skill sidebar entries come from a manifest written by scripts/generate.ts
+// (fetch-skills) before dev/build, so config evaluation stays synchronous —
+// no top-level await, which v2's Vite/Waku config loading doesn't want.
+type SkillEntry = { name: string; title: string };
+let skills: SkillEntry[] = [];
+try {
+  skills = JSON.parse(fs.readFileSync("src/skills.generated.json", "utf8"));
+} catch {
+  // manifest not generated yet — sidebar omits skill pages this run
+}
 const skillSidebarItems = skills.map((s) => ({
   text: s.title,
   link: `/build-with-ai/${s.name}`,
 }));
 
-const baseUrl = process.env.VERCEL_ENV === "production"
-  ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-  : `https://${process.env.VERCEL_URL}`;
+// Only set baseUrl in production. Vocs v2 renders <base href={baseUrl}>, which
+// rebases every relative URL on the page — including Waku's /RSC/* client-navigation
+// fetches. On preview deploys the host you browse (a branch alias) isn't VERCEL_URL
+// (the immutable deployment host), so baking that in sends RSC fetches cross-origin →
+// CORS preflight → Waku 405 → "failed to fetch" when navigating. Leaving it undefined
+// lets relative URLs resolve to whatever origin the visitor is actually on.
+const baseUrl =
+  process.env.VERCEL_ENV === "production"
+    ? "https://docs.scaffoldeth.io"
+    : undefined;
 
 export default defineConfig({
   title: "🏗 Scaffold-ETH 2 | Docs",
@@ -23,27 +33,32 @@ export default defineConfig({
   logoUrl: "/img/logo.svg",
   iconUrl: "/img/favicon.png",
   baseUrl,
-  head: () =>
-    createElement(
-      Fragment,
-      null,
-      createElement("script", {
-        defer: true,
-        src: "https://plausible.io/js/pa-d22-c9SXWUaRHTRe7b4Uu.js",
-      }),
-      createElement("script", {
-        dangerouslySetInnerHTML: {
-          __html:
-            "window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()",
-        },
-      }),
-    ),
-  ogImageUrl: {
-    "/": "https://vocs.dev/api/og?logo=%logo&title=%title&description=%description",
+  ogImageUrl:
+    "https://vocs.dev/api/og?logo=%logo&title=%title&description=%description",
+  // v2's Shiki bundle is strict: an unknown fence language fails the build
+  // (v1 silently fell back to plaintext). Skill pages fetched from the SE-2 repo
+  // use `env` fences — alias them to bash, and let anything else degrade to text.
+  codeHighlight: {
+    langAlias: { env: "bash" },
+    fallbackLanguage: "text",
   },
-  vite: {
-    publicDir: "docs/public",
+  // Native v2 MCP server at /api/mcp — lets AI clients read and search the docs.
+  // Docs-only by design: we don't expose scaffold-eth/scaffold-eth-2 as a source.
+  // Anyone using SE-2 already has their own project locally (possibly Foundry,
+  // possibly customized) — the agent should read that, not the Hardhat template.
+  mcp: { enabled: true },
+  editLink: {
+    link: "https://github.com/scaffold-eth/docs.scaffoldeth.io/edit/main/src/pages/:path",
   },
+  // Replaces the redirects that lived in vercel.json (now native to Vocs v2).
+  redirects: [
+    { source: "/quick-start", destination: "/quick-start/installation" },
+    {
+      source: "/recipes",
+      destination: "/recipes/GetCurrentBalanceFromAccount",
+    },
+    { source: "/deploying", destination: "/deploying/deploy-smart-contracts" },
+  ],
   sidebar: [
     {
       text: "🏗️ Welcome to Scaffold-ETH 2",
@@ -239,9 +254,4 @@ export default defineConfig({
       ],
     },
   ],
-  editLink: {
-    pattern:
-      "https://github.com/scaffold-eth/docs.scaffoldeth.io/edit/main/docs/pages/:path",
-    text: "Suggest changes to this page",
-  },
 });

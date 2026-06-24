@@ -4,20 +4,27 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vocs dev",
-    "build": "vocs build",
+    "generate": "tsx scripts/generate.ts",
+    "dev": "pnpm generate && vocs dev",
+    "build": "pnpm generate && vocs build",
     "preview": "vocs preview",
     "format": "prettier --write ."
   },
   "dependencies": {
-    "react": "latest",
-    "react-dom": "latest",
-    "vocs": "^1.2.1"
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "vocs": "^2.1.6",
+    "waku": "^1.0.0-beta.3"
   },
   "devDependencies": {
-    "@types/react": "latest",
+    "@types/node": "^22",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@vitejs/plugin-react": "^6",
     "prettier": "3.7.4",
-    "typescript": "latest"
+    "tsx": "^4",
+    "typescript": "^5",
+    "vite": "^8"
   },
   "packageManager": "pnpm@9.14.2+sha512.6e2baf77d06b9362294152c851c4f278ede37ab1eba3a55fda317a4a17b209f4dbb973fb250a77abc463a341fcb1f17f17cfa24091c4eb319cda0d9b84278387"
 }
