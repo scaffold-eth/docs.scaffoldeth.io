@@ -1,0 +1,8 @@
+# Scaffold-ETH 2 documentation is open-source and meant to be discoverable
+# by search engines and AI agents. Crawl freely.
+
+User-agent: *
+Allow: /
+Content-Signal: ai-train=yes, search=yes, ai-input=yes
+
+Sitemap: https://docs.scaffoldeth.io/sitemap.xml
