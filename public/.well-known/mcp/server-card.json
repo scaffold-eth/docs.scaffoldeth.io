@@ -1,5 +1,5 @@
 {
-  "name": "io.scaffoldeth.docs",
+  "name": "io.scaffoldeth/docs",
   "title": "Scaffold-ETH 2 Docs",
   "description": "MCP server for the Scaffold-ETH 2 documentation. Lets AI clients list, read, and search the docs.",
   "version": "1.0.0",
