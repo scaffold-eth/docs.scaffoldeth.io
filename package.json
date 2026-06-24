@@ -6,7 +6,7 @@
   "scripts": {
     "generate": "tsx scripts/generate.ts",
     "dev": "pnpm generate && vocs dev",
-    "build": "pnpm generate && vocs build",
+    "build": "pnpm generate && vocs build && tsx scripts/restore-robots.ts",
     "preview": "vocs preview",
     "format": "prettier --write ."
   },
