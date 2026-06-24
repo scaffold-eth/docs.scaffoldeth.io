@@ -1,0 +1,30 @@
+{
+  "name": "io.scaffoldeth.docs",
+  "title": "Scaffold-ETH 2 Docs",
+  "description": "MCP server for the Scaffold-ETH 2 documentation. Lets AI clients list, read, and search the docs.",
+  "version": "1.0.0",
+  "websiteUrl": "https://docs.scaffoldeth.io",
+  "repository": {
+    "url": "https://github.com/scaffold-eth/docs.scaffoldeth.io",
+    "source": "github"
+  },
+  "serverInfo": {
+    "name": "vocs",
+    "version": "1.0.0"
+  },
+  "transport": {
+    "type": "streamable-http",
+    "endpoint": "https://docs.scaffoldeth.io/api/mcp"
+  },
+  "capabilities": {
+    "tools": true,
+    "resources": false,
+    "prompts": false
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://docs.scaffoldeth.io/api/mcp"
+    }
+  ]
+}
