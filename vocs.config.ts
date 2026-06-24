@@ -16,13 +16,16 @@ const skillSidebarItems = skills.map((s) => ({
   link: `/build-with-ai/${s.name}`,
 }));
 
+// Only set baseUrl in production. Vocs v2 renders <base href={baseUrl}>, which
+// rebases every relative URL on the page — including Waku's /RSC/* client-navigation
+// fetches. On preview deploys the host you browse (a branch alias) isn't VERCEL_URL
+// (the immutable deployment host), so baking that in sends RSC fetches cross-origin →
+// CORS preflight → Waku 405 → "failed to fetch" when navigating. Leaving it undefined
+// lets relative URLs resolve to whatever origin the visitor is actually on.
 const baseUrl =
-  process.env.VERCEL_ENV === "production" &&
-  process.env.VERCEL_PROJECT_PRODUCTION_URL
-    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-    : process.env.VERCEL_URL
-      ? `https://${process.env.VERCEL_URL}`
-      : "https://docs.scaffoldeth.io";
+  process.env.VERCEL_ENV === "production"
+    ? "https://docs.scaffoldeth.io"
+    : undefined;
 
 export default defineConfig({
   title: "🏗 Scaffold-ETH 2 | Docs",
