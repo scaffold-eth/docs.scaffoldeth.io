@@ -50,7 +50,7 @@ export default defineConfig({
     ],
   },
   editLink: {
-    link: "https://github.com/scaffold-eth/se-2-docs/edit/main/src/pages/:path",
+    link: "https://github.com/scaffold-eth/docs.scaffoldeth.io/edit/main/src/pages/:path",
   },
   // Replaces the redirects that lived in vercel.json (now native to Vocs v2).
   redirects: [

@@ -70,7 +70,7 @@ export default function Footer() {
             Scaffold-Eth 2 GitHub ↗
           </a>
           <a
-            href="https://github.com/scaffold-eth/se-2-docs"
+            href="https://github.com/scaffold-eth/docs.scaffoldeth.io"
             target="_blank"
             rel="noreferrer"
             style={linkStyle}

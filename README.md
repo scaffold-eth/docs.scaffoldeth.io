@@ -11,8 +11,8 @@ To run the Documentation site locally, first ensure you have [Node](https://node
 Clone the repository, install all dependencies, and then start Vocs.
 
 ```bash
-git clone https://github.com/scaffold-eth/se2-docs.git
-cd se2-docs
+git clone https://github.com/scaffold-eth/docs.scaffoldeth.io.git
+cd docs.scaffoldeth.io
 pnpm install
 pnpm dev
 ```
