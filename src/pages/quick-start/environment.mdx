@@ -3,7 +3,7 @@ title: Environment
 description: How to set up your development environment for Scaffold ETH-2.
 ---
 
-import { Tabs, TabItem } from "../../components/Tabs";
+import { Tab, Tabs } from "vocs";
 
 # Environment
 
@@ -19,21 +19,21 @@ yarn chain
 
 This command starts a local Ethereum network using Hardhat or Foundry, depending on which one you selected in the CLI. The network runs on your local machine and can be used for testing and development. You can customize the network configuration in:
 
-<Tabs groupId="dev-tool">
-<TabItem value="hardhat" label="Hardhat" default>
+<Tabs stateKey="dev-tool">
+<Tab title="Hardhat">
 
 ```sh
 packages/hardhat/hardhat.config.ts
 ```
 
-</TabItem>
-<TabItem value="foundry" label="Foundry">
+</Tab>
+<Tab title="Foundry">
 
 ```sh
 packages/foundry/foundry.toml
 ```
 
-</TabItem>
+</Tab>
 </Tabs>
 
 ### 2. **Deploy Your Smart Contract**:
@@ -46,40 +46,40 @@ yarn deploy
 
 This command deploys a test smart contract to the local network. The contract can be modified to suit your needs and can be found in:
 
-<Tabs groupId="dev-tool">
-<TabItem value="hardhat" label="Hardhat" default>
+<Tabs stateKey="dev-tool">
+<Tab title="Hardhat">
 
 ```sh
 packages/hardhat/contracts
 ```
 
-</TabItem>
-<TabItem value="foundry" label="Foundry">
+</Tab>
+<Tab title="Foundry">
 
 ```sh
 packages/foundry/contracts
 ```
 
-</TabItem>
+</Tab>
 </Tabs>
 
 The `yarn deploy` command uses a deploy script to deploy the contract to the network. You can customize the deployment script located in:
 
-<Tabs groupId="dev-tool">
-<TabItem value="hardhat" label="Hardhat" default>
+<Tabs stateKey="dev-tool">
+<Tab title="Hardhat">
 
 ```sh
 packages/hardhat/deploy
 ```
 
-</TabItem>
-<TabItem value="foundry" label="Foundry">
+</Tab>
+<Tab title="Foundry">
 
 ```sh
 packages/foundry/script
 ```
 
-</TabItem>
+</Tab>
 </Tabs>
 
 ### 3. **Launch your NextJS Application**:
@@ -94,9 +94,9 @@ Visit your app on `http://localhost:3000`. You can interact with your smart cont
 
 ## What's Next:
 
-<Tabs groupId="dev-tool">
+<Tabs stateKey="dev-tool">
 
-  <TabItem value="hardhat" label="Hardhat" default>
+  <Tab title="Hardhat">
 
     - Edit your smart contract:
       - `YourContract.sol` in `packages/hardhat/contracts`
@@ -107,9 +107,9 @@ Visit your app on `http://localhost:3000`. You can interact with your smart cont
     - Edit your smart contract test in:
       - `packages/hardhat/test` to run test use `yarn hardhat:test`
 
-  </TabItem>
+  </Tab>
 
-  <TabItem value="foundry" label="Foundry">
+  <Tab title="Foundry">
 
     - Edit your smart contract:
       - `YourContract.sol` in `packages/foundry/contracts`
@@ -120,6 +120,6 @@ Visit your app on `http://localhost:3000`. You can interact with your smart cont
     - Edit your smart contract test in:
       - `packages/foundry/test` to run test use `yarn foundry:test`
 
-  </TabItem>
+  </Tab>
 
 </Tabs>
