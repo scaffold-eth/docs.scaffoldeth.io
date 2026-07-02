@@ -3,11 +3,7 @@ import fs from "node:fs";
 import path from "node:path";
 
 const SCHEMA_URL = "https://schemas.agentskills.io/discovery/0.2.0/schema.json";
-// Lives under /assets/md/ (not public root) because Vocs v2 routes every
-// non-/assets *.md URL through the SSR markdown-negotiation middleware, which
-// shadows static .md files. The md-router resolves /SKILL.md by reading its
-// "twin" at /assets/md/SKILL.md, so placing the file there serves it verbatim.
-const ROOT_SKILL = "public/assets/md/SKILL.md";
+const ROOT_SKILL = "public/SKILL.md";
 const SKILLS_DIR = "public/skills";
 const OUTPUT = "public/.well-known/agent-skills/index.json";
 const PRODUCTION_URL = "https://docs.scaffoldeth.io";
