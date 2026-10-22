@@ -88,6 +88,18 @@ The interval in milliseconds at which your front-end application polls the RPC s
 Default Alchemy API key from Scaffold-ETH 2 for local testing purposes.
 It's recommended to obtain your own API key from the [Alchemy Dashboard](https://dashboard.alchemyapi.io/) and store it in this environment variable: `NEXT_PUBLIC_ALCHEMY_API_KEY` in the `\packages\nextjs\.env.local` file.
 
+#### - rpcOverrides
+
+Map of chain ID to RPC URL. When set for a chain, the app sends RPC requests to this URL first, ahead of Alchemy and the chain's public RPC. Use it to point the dapp at your own node or RPC proxy, for example a self-hosted [eRPC](https://github.com/erpc/erpc) instance that fails over across several providers.
+
+```ts
+rpcOverrides: {
+  [chains.mainnet.id]: "https://rpc.example.com/main/evm/1",
+},
+```
+
+The browser calls this URL directly, so the endpoint must allow your app's origin (CORS). In eRPC, list it under `cors.allowedOrigins` in the project config.
+
 #### - walletConnectProjectId
 
 WalletConnect's default project ID from Scaffold-ETH 2 for local testing purposes.
