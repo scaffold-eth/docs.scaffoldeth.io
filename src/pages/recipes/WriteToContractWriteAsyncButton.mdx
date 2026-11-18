@@ -18,7 +18,7 @@ import { useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
 export const Greetings = () => {
   const [newGreeting, setNewGreeting] = useState("");
 
-  const { writeContractAsync, isPending } = useScaffoldWriteContract("YourContract");
+  const { writeContractAsync, isPending } = useScaffoldWriteContract({ contractName: "YourContract" });
 
   const handleSetGreeting = async () => {
     try {
@@ -94,7 +94,7 @@ import { useScaffoldWriteContract } from "~~/hooks/scaffold-eth"; // [!code hl]
 export const Greetings = () => {
   const [newGreeting, setNewGreeting] = useState(""); // [!code hl]
 
-  const { writeContractAsync } = useScaffoldWriteContract("YourContract"); // [!code hl]
+  const { writeContractAsync } = useScaffoldWriteContract({ contractName: "YourContract" }); // [!code hl]
 
   const handleSetGreeting = async () => { // [!code hl]
     try { // [!code hl]
@@ -140,7 +140,7 @@ import { useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
 export const Greetings = () => {
   const [newGreeting, setNewGreeting] = useState("");
 
-  const { writeContractAsync } = useScaffoldWriteContract("YourContract");
+  const { writeContractAsync } = useScaffoldWriteContract({ contractName: "YourContract" });
 
   const handleSetGreeting = async () => {
     try {
@@ -191,7 +191,7 @@ import { useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
 
 export const Greetings = () => {
   const [newGreeting, setNewGreeting] = useState("");
-  const { writeContractAsync, isPending } = useScaffoldWriteContract("YourContract"); // [!code hl]
+  const { writeContractAsync, isPending } = useScaffoldWriteContract({ contractName: "YourContract" }); // [!code hl]
 
   const handleSetGreeting = async () => {
     try {
