@@ -10,7 +10,7 @@ description: How AGENTS.md gives AI coding agents context about your Scaffold-ET
 Most AI coding tools (Claude Code, Cursor, Cline) automatically read this file when they enter your project directory.
 
 :::info
-View the full file on GitHub: [`scaffold-eth-2/AGENTS.md`](https://github.com/scaffold-eth/scaffold-eth-2/blob/main/AGENTS.md)
+To see the full file, open `AGENTS.md` in the root of a project created with `npx create-eth@latest`.
 :::
 
 ## Customizing AGENTS.md

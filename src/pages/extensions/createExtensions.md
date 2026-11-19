@@ -55,7 +55,7 @@ npx create-eth@latest -e {github-username}/{extension-repo-name}:{branch-name} #
 Key points:
 
 - They allow you to add specific content to files in the base project.
-- Not all files can be modified this way. See [TEMPLATE-FILES.md](https://github.com/scaffold-eth/create-eth/blob/main/contributors/TEMPLATE-FILES.md) for a list of supported template files.
+- Not all files can be modified this way. See [TEMPLATE-FILES.md](https://github.com/scaffold-eth/scaffold-eth-2/blob/main/contributors/TEMPLATE-FILES.md) for a list of supported template files.
 - To use a template file, create an `*.args.mjs` file in your extension having the same path structure as `*.template.mjs`. For example, to add an extra tab in the header, you'd create `extension/packages/nextjs/components/Header.tsx.args.mjs`.
 
 ### Advanced Development Workflow
@@ -70,11 +70,11 @@ The workflow consists of two main parts:
 
 ### Extension Development Utility
 
-1. **Clone the `create-eth` Repository:**
+1. **Clone the Scaffold-ETH 2 Repository:**
 
    ```bash
-   git clone https://github.com/scaffold-eth/create-eth.git
-   cd create-eth
+   git clone https://github.com/scaffold-eth/scaffold-eth-2.git
+   cd scaffold-eth-2
    yarn install
    ```
 
@@ -93,7 +93,7 @@ The workflow consists of two main parts:
    ```
 
    This command will create a **new base instance**, similar to running `npx create-eth@latest`.
-   Note: It's recommended to create a **new base instance** outside of the `create-eth` folder, so use `../<your-instance-name>`.
+   Note: It's recommended to create a **new base instance** outside of the `scaffold-eth-2` folder, so use `../<your-instance-name>`.
 
    The name mentioned for the "Your project name" question will be used as the **extension name**. For example, if you provide `../eip` as the value to the question, then the final extension name will be `eip`.
 
@@ -104,7 +104,7 @@ The workflow consists of two main parts:
 
 5. **Create the Extension:**
 
-   Return to the `create-eth` folder.
+   Return to the `scaffold-eth-2` folder.
 
    ```bash
    yarn create-extension {projectName}
@@ -112,14 +112,14 @@ The workflow consists of two main parts:
 
    Example: `yarn create-extension ../eip`
 
-   This command gathers all changes from the instance and creates an extension in the `create-eth/externalExtensions/${extensionName}` directory. This directory is the actual extension directory (notice it contains only the extra files related to your extension changes), which can be published to GitHub and used by others.
+   This command gathers all changes from the instance and creates an extension in the `scaffold-eth-2/externalExtensions/${extensionName}` directory. This directory is the actual extension directory (notice it contains only the extra files related to your extension changes), which can be published to GitHub and used by others.
 
 6. **Publish the Extension:**
    - Go inside the extension directory.
    - Push the extension to GitHub.
 
    ```bash
-   cd create-eth/externalExtensions/${extensionName}
+   cd scaffold-eth-2/externalExtensions/${extensionName}
    git init
    git add .
    git commit -m "Initial commit of my extension"
@@ -137,7 +137,7 @@ The workflow consists of two main parts:
 
 This phase allows you to test your extension locally and see how it works when used by other developers.
 
-> NOTE: If you've already published your extension to GitHub using the "Developing a Simple Extension" approach, make sure to clone that extension repository into the `create-eth/externalExtensions/` directory before proceeding with local testing.
+> NOTE: If you've already published your extension to GitHub using the "Developing a Simple Extension" approach, make sure to clone that extension repository into the `scaffold-eth-2/externalExtensions/` directory before proceeding with local testing.
 
 1. **Run the CLI in dev mode:**
 
@@ -147,19 +147,19 @@ This phase allows you to test your extension locally and see how it works when u
 
    Example: `yarn cli -e eip --dev`
 
-   The `extensionName` should be present in `create-eth/externalExtensions/${extensionName}`.
+   The `extensionName` should be present in `scaffold-eth-2/externalExtensions/${extensionName}`.
 
    Let's suppose you named your project "../my-dev-instance". Then this `../my-dev-instance` should contain all your extension changes. `--dev` will symlink the extension to the instance project.
 
 2. **Test and Tweak the Extension:**
-   Since the instance is symlinked with the extension, make necessary changes directly in the symlinked files within `../my-dev-instance`, and the changes should be automatically reflected in the `create-eth/externalExtensions/${extensionName}` directory.
+   Since the instance is symlinked with the extension, make necessary changes directly in the symlinked files within `../my-dev-instance`, and the changes should be automatically reflected in the `scaffold-eth-2/externalExtensions/${extensionName}` directory.
 
 3. **Push the tweaked changes**
    - Go inside the extension directory.
    - Push the changes to GitHub.
 
    ```bash
-   cd create-eth/externalExtensions/${extensionName}
+   cd scaffold-eth-2/externalExtensions/${extensionName}
    git add .
    git commit -m "some changes"
    git push
