@@ -38,7 +38,7 @@ This example uses the `useScaffoldContract` hook to obtain a contract instance f
 | :-------------------------- | :----------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------- |
 | **contractName**            | `string`                                                           | Name of the contract.                                                                                                      |
 | **walletClient** (optional) | [`WalletClient`](https://wagmi.sh/react/api/hooks/useWalletClient) | Wallet client must be passed in order to call `write` methods of the contract                                              |
-| **chainId** (optional)      | `string`                                                           | Id of the chain the contract lives on. Defaults to [`targetNetworks[0].id`](/deploying/deploy-nextjs-app#--targetnetworks) |
+| **chainId** (optional)      | `number`                                                           | Id of the chain the contract lives on. Defaults to [`targetNetworks[0].id`](/deploying/deploy-nextjs-app#--targetnetworks) |
 
 ## Return Value
 
