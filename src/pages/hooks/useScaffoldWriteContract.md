@@ -15,11 +15,12 @@ The following configuration options can be passed to the hook:
 
 ## Configuration
 
-| Parameter                          | Type     | Description                                                                                                                |
-| :--------------------------------- | :------- | :------------------------------------------------------------------------------------------------------------------------- |
-| **contractName**                   | `string` | Name of the contract to write to.                                                                                          |
-| **chainId** (optional)             | `string` | Id of the chain the contract lives on. Defaults to [`targetNetworks[0].id`](/deploying/deploy-nextjs-app#--targetnetworks) |
-| **writeContractParams** (optional) | `object` | wagmi's `useWriteContract` hook [parameters object](https://wagmi.sh/react/api/hooks/useWriteContract#parameters)          |
+| Parameter                          | Type      | Description                                                                                                                                                          |
+| :--------------------------------- | :-------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **contractName**                   | `string`  | Name of the contract to write to.                                                                                                                                    |
+| **chainId** (optional)             | `number`  | Id of the chain the contract lives on. Defaults to [`targetNetworks[0].id`](/deploying/deploy-nextjs-app#--targetnetworks)                                           |
+| **disableSimulate** (optional)     | `boolean` | Skip simulating the transaction before sending it (default: `false`). When `false`, the call is simulated first so a revert is surfaced as an error before you sign. |
+| **writeContractParams** (optional) | `object`  | wagmi's `useWriteContract` hook [parameters object](https://wagmi.sh/react/api/hooks/useWriteContract#parameters)                                                    |
 
 To send the transaction, you can call the `writeContractAsync` function returned by the hook (which we instance as `writeYourContractAsync`). Here's an example usage:
 
