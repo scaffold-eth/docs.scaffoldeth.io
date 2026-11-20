@@ -19,7 +19,7 @@ lets a user upload a CSV of addresses and amounts, then sends ETH to
 all of them in a single transaction using a batch-transfer contract.
 ```
 
-The orchestrator skill tells your agent how to scaffold a new SE-2 project with `npx create-eth@latest` and walks it through the full setup. Based on what you asked for, the agent picks the right sub-skills from `.agents/skills/` to implement features correctly. So if your prompt involves indexing blockchain events, the agent will read the ponder skill and follow its patterns. If you're building something with NFTs, it reaches for the erc-721 skill instead. The skills ship with every SE-2 project and the agent finds them on its own.
+The orchestrator skill tells your agent how to scaffold a new SE-2 project with `npx create-eth@latest` and walks it through the full setup. Based on what you asked for, the agent picks the right sub-skills from `.agents/skills/` to implement features correctly. So if your prompt involves indexing blockchain events, the agent will read the ponder skill (or the subgraph skill, for The Graph's decentralized network) and follow its patterns. If you're building something with NFTs, it reaches for the erc-721 skill instead. The skills ship with every SE-2 project and the agent finds them on its own.
 
 ### Already have a project?
 
