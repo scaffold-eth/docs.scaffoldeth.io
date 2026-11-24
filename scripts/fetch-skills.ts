@@ -4,9 +4,9 @@ import path from "node:path";
 const SKILLS_DIR = "src/pages/build-with-ai";
 const RAW_SKILLS_DIR = "public/skills";
 const RAW_BASE =
-  "https://raw.githubusercontent.com/scaffold-eth/scaffold-eth-2/main/.agents/skills";
+  "https://raw.githubusercontent.com/scaffold-eth/scaffold-eth-2/main/templates/base/.agents/skills";
 const GITHUB_API =
-  "https://api.github.com/repos/scaffold-eth/scaffold-eth-2/contents/.agents/skills";
+  "https://api.github.com/repos/scaffold-eth/scaffold-eth-2/contents/templates/base/.agents/skills";
 
 export type Skill = {
   name: string;
