@@ -22,8 +22,6 @@ function skillTitle(name: string, body: string): string {
 }
 
 // One-line summary for the overview table and the page meta.
-// "Use when …" descriptions keep their first sentence (later ones point to other skills);
-// older "Add X to SE-2. Use when …" ones keep the part before "Use when".
 function whenToUse(description: string): string {
   if (/^Use when /i.test(description)) {
     return description
