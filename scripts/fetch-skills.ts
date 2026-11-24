@@ -21,6 +21,18 @@ function skillTitle(name: string, body: string): string {
   return heading.replace(/(?:\s+Integration)?\s+for Scaffold-ETH 2$/i, "").trim() || name;
 }
 
+// One-line summary for the overview table and the page meta.
+function whenToUse(description: string): string {
+  if (/^Use when /i.test(description)) {
+    return description
+      .replace(/^Use when\s+/i, "")
+      .replace(/^the user wants( to)?\s+/i, (_, to) => (to ? "you want to " : "you want "))
+      .split(/\.\s/)[0]
+      .replace(/\.$/, "");
+  }
+  return description.split(". Use when")[0];
+}
+
 async function getSkillNames(): Promise<string[]> {
   const res = await fetch(GITHUB_API);
   if (!res.ok) return [];
@@ -42,15 +54,17 @@ async function fetchAndWriteSkill(name: string): Promise<Skill | null> {
   // Extract description for Vocs meta
   const descMatch = raw.match(/description:\s*"([^"]+)"/);
   const shortDesc = descMatch
-    ? descMatch[1].split(". Use when")[0]
+    ? whenToUse(descMatch[1])
     : `${name} skill for Scaffold-ETH 2`;
+  // The table header supplies "Use it when"; the page meta stands alone, so it needs it too
+  const metaDesc = descMatch && /^Use when /i.test(descMatch[1]) ? `Use it when ${shortDesc}` : shortDesc;
 
   const title = skillTitle(name, body);
 
   // Vocs frontmatter for page meta, original frontmatter as visible code block
   fs.writeFileSync(
     path.join(SKILLS_DIR, `${name}.md`),
-    `---\ntitle: "${title}"\ndescription: "${shortDesc}"\n---\n\n\`\`\`yaml\n---\n${originalFrontmatter}\n---\n\`\`\`\n\n${body}`,
+    `---\ntitle: "${title}"\ndescription: "${metaDesc}"\n---\n\n\`\`\`yaml\n---\n${originalFrontmatter}\n---\n\`\`\`\n\n${body}`,
   );
 
   // Raw, untouched SKILL.md for agent discovery index (/.well-known/agent-skills)
@@ -82,7 +96,7 @@ Skills are markdown files (\`SKILL.md\`) that teach AI agents how to add specifi
 
 ## Available Skills
 
-| Skill | What it does |
+| Skill | Use it when |
 |-------|-------------|
 ${rows}
 
