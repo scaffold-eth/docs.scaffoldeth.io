@@ -40,7 +40,7 @@ This example retrieves the historical event logs for the `GreetingChange` event 
 | **receiptData** (optional)     | `boolean` | If set to true it will return the receipt data for each event (default: false).                                                                                       |
 | **watch** (optional)           | `boolean` | If set to true, the events will be refetched every [`pollingInterval`](/deploying/deploy-nextjs-app#--pollinginterval) set at `scaffold.config.ts`. (default: false). |
 | **enabled** (optional)         | `boolean` | If set to false, the hook will not fetch any data (default: true).                                                                                                    |
-| **chainId** (optional)         | `string`  | Id of the chain the contract lives on. Defaults to [`targetNetworks[0].id`](/deploying/deploy-nextjs-app#--targetnetworks)                                            |
+| **chainId** (optional)         | `number`  | Id of the chain the contract lives on. Defaults to [`targetNetworks[0].id`](/deploying/deploy-nextjs-app#--targetnetworks)                                            |
 | **blocksBatchSize** (optional) | `number`  | batch size for fetching events. If specified, each batch will contain at most this many blocks (default: 500)                                                         |
 
 ## Return Values
